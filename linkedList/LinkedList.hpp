@@ -30,28 +30,46 @@ template <typename T>
 int LinkedList<T>::size() const
 {
 
+       if(m_front==nullptr)//return the size of the node-list.
+    {
+        return(0);
+    }
+    else
+    {
         return(m_size);
+    }
 }
 
 template <typename T>
 bool LinkedList<T>::search(T value) const
 {
-	Node<T>* temp = m_front;
-	bool isFound = false;
-
-	/** TODO 
-		Fix this method
-	*/
-
-	return(isFound);
+if(m_front!=nullptr)//search a value in a node list to check whether it exists.
+    {                   //return true if the value is found, false otherwise.
+        Node* temp=m_front;
+      if(temp->getValue()==value)
+        {
+            return(true);
+        }
+        while(temp->getNext()!=nullptr)
+        {
+            temp=temp->getNext();
+            if(temp->getValue()==value)
+            {
+                return(true);
+            }
+        }
+        return false;
+    }
+    else
+    {
+        return(false);
+    }
 }
-
 template <typename T>
 std::vector<T> LinkedList<T>::toVector() const
 {
 	std::vector<T> vec;
-	Node<T>* temp = m_front;
-
+	Node<T>* temp = m_front
 	while( temp != nullptr )
 	{
 		vec.push_back(temp->getValue());
@@ -96,15 +114,27 @@ void LinkedList<T>::addFront(T value)
 template <typename T>
 bool LinkedList<T>::removeBack()
 {
-	Node<T>* lastNode = nullptr;
-	Node<T>* secondintoLast = nullptr;
-	bool isRemoved = false;
-
-	/** TODO 
-		Fix this method
-	*/
-
-	return(isRemoved);
+    Node* temp=nullptr;
+    Node* prev=nullptr;
+    if(m_front!=nullptr)
+    {
+        temp=m_front;
+       while(temp->getNext()!=nullptr)
+       {
+            prev=temp;
+            temp=temp->getNext();
+       }
+           delete temp;
+           temp=nullptr;
+           prev->setNext(nullptr);
+           prev=nullptr;
+           m_size = m_size - 1;
+           return true;
+    }
+    else
+    {
+        return(false);
+    }
 }	
 
 template <typename T>
